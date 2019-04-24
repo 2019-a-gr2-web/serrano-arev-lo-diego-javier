@@ -1,9 +1,10 @@
 import {Body, Controller, Delete, Get, Headers, HttpCode, Param, Post, Put, Query, Request, Response} from '@nestjs/common';
-import { AppService } from './app.service';
-import * as Joi from '@hapi/joi';
-import {response} from "express";
+import { AppService } from './app.service'
+import * as Joi from '@hapi/joi'
 
-const Joi = require('@hapi/joi');
+
+
+
 @Controller('/api')
 export class AppController {
     constructor(private readonly appService: AppService) {}
@@ -82,29 +83,58 @@ export class AppController {
     }
 
     @Get('/semilla')
-    semilla(@Request() request, @Response()) {
+    semilla(
+        @Request() request,
+        @Response() response
+    ) {
         console.log(request.cookies);
         const cookies = request.cookies;  //JSON
-        const esquemaValidacionNumero= Joi.object().keys({
-            numero:Joi.number().integer()
-        })
 
+        //---------------------------
+
+        const esquemaValidacionNumero = Joi.object().keys(
+            {
+                numero:Joi.number().integer().required()
+            });
         const objetoValidacion = {
             numero: cookies.numero
         };
-        const resultado = Joi.validate(objetoValidacion, esquemaValidacionNumero);
-
-        if(resultado.error){
-            console.log('Resultado: ', resultado);
-        }else {
+        const resultado = Joi.validate(objetoValidacion,
+            esquemaValidacionNumero);
+        if(resultado.error) {
+            console.log('Resultado', resultado);
+        } else {
             console.log('Numero valido');
         }
-        const
+
+        /*- ------------------------------------ */
+
+        const cookieSegura = request.signedCookies.fechaServidor;
+        if(cookieSegura) {
+            console.log('Cookie segura');
+        } else {
+            console.log('No es valida esta cookie');
+        }
+
+
         if(cookies.micookie) {
-            response.cookie('fechaServidor', new Date().getTime());
+
+            const horaFechaServidor = new Date();
+            const minutos = horaFechaServidor.getMinutes();
+            horaFechaServidor.setMinutes(minutos + 1);
+
+            response.cookie(
+                'fechaServidor',          // nombre -> key
+                new Date().getTime(),     // valor -> value
+                {    // OPCIONES
+                    // expires: horaFechaServidor
+                    signed: true
+                }
+
+            );
             return response.send('ok');
         } else {
-            return response.send(':)') ;
+            return response.send('😞');
         }
     }
 
@@ -138,6 +168,18 @@ export class AppController {
     halloWelt(): string {
         return 'Hallo Welt'
     }
+
+
+    // Vistas
+
+    @Get('/inicio')
+    inicio(
+        @Response() res
+    ) {
+        return res.render('inicio');
+    }
+
+
 
 }
 
@@ -201,3 +243,146 @@ objeto['propiedadTres'] = 'valor 3';
 //Eliminar una propiedad
 delete objeto.propiedadTres;        // -> forma peligros
 objeto.propiedadTres = undefined;    // -> forma segura
+
+
+
+function holaMundo() {
+    console.log('Hola Mundo');
+}
+const respuestaHolaMundo = holaMundo();     // retorna undefined
+console.log('Resp hola mundo: ',respuestaHolaMundo)
+
+function suma(a:number, b:number):number {
+    return a + b;
+}
+const respuestaSuma = suma(1,2);
+console.log('Resp suma:', respuestaSuma);
+
+
+// Condicionales
+if(true) {          // Truty
+    console.log('Verdadeero');
+} else {
+    console.log('Falso');
+}
+
+if(false) {         // Falsy
+    console.log('Verdadeero');
+} else {
+    console.log('Falso');
+}
+
+if("") {            // Un string vacio en JS es Falsy
+    console.log('Verdadero "" ');
+} else {
+    console.log('Falso "" ');
+}
+
+if("b") {            // Un string con un caracter o mas en JS es Truty
+    console.log('Verdadero "" ');
+} else {
+    console.log('Falso "" ');
+}
+
+if(0) {            // El 0 en JS es Falsy
+    console.log('Verdadero "" ');
+} else {
+    console.log('Falso "" ');
+}
+
+if("0") {            // El 0 string en JS es Truty
+    console.log('Verdadero "0" ');
+} else {
+    console.log('Falso "0" ');
+}
+
+if(-1) {            // El -1 en JS es Truty
+    console.log('Verdadero "-1" ');
+} else {
+    console.log('Falso "-1" ');
+}
+
+if(1) {            // El 1 en JS es Truty
+    console.log('Verdadero "1" ');
+} else {
+    console.log('Falso "1" ');
+}
+
+if(undefined) {            // El undifined en JS es Falsy
+    console.log('Verdadero "U" ');
+} else {
+    console.log('Falso "U" ');
+}
+
+if(null) {            // El null en JS es Falsy
+    console.log('Verdadero "N" ');
+} else {
+    console.log('Falso "N" ');
+}
+
+if({}) {            // El JSON vacio en JS es Truty
+    console.log('Verdadero "JSON" ');
+} else {
+    console.log('Falso "JSON" ');
+}
+
+
+// Operadores de Arreglos en JS
+const arreglo = [
+    function () { return '0'},
+    1,
+    'B',
+    true,
+    {},
+    []
+];
+
+
+
+
+// 1) Imprima en consola todos los elementos
+// 2) Sume 2 a los pares y 1 a los impares
+const arregloNumeroMap = [1,2,3,4,5,6];
+const rMap =arregloNumeroMap
+    .map(//
+        ()=>{
+            const esPar = valorActual%2==0;
+            if(esPar){
+                return valorActual +2;
+            }else{
+                return valorActual +1;
+            }
+
+        }
+
+
+    )
+
+// 3) Encontrar si existe el numero 4
+    const arregloNumerosFind = [1,2,3,4,5,6];
+    const rFind = arregloNumerosFind
+        .find(//
+            (valorActual)=>{
+                return valorActual==4;
+            }
+
+        )
+
+// 4) Filtrar los numeros menos a 5
+
+const arregloNumerosFilter = [1,2,3,4,5,6];
+const rFilter = arregloNumerosFilter
+    .filter(
+        (valorActual)=>{
+            return valorActual < 5;
+        }
+    )
+
+// 5) Todos los valores son positivos
+// 6) Algun valor es menor que 2 ?
+// 7) Sumar todos los valores
+// 😎 Restar todos los valores de 100
+
+// 1.1) sumen 10 a todos
+// 1.2) Filtren a los mayores a 15
+//  1.3) Si hay algun numero mayor a 30
