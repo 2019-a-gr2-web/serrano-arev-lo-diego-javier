@@ -342,6 +342,8 @@ const arreglo = [
 
 // 1) Imprima en consola todos los elementos
 // 2) Sume 2 a los pares y 1 a los impares
+
+/*
 const arregloNumeroMap = [1,2,3,4,5,6];
 const rMap =arregloNumeroMap
     .map(//
@@ -356,7 +358,7 @@ const rMap =arregloNumeroMap
         }
 
 
-    )
+    )*/
 
 // 3) Encontrar si existe el numero 4
     const arregloNumerosFind = [1,2,3,4,5,6];
