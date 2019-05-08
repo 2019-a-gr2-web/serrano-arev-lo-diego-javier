@@ -11,7 +11,7 @@ async function bootstrap() {
   app.use(cookieParser('Secret'));
 
 
-  app.set('view engine', 'ejs' );
+  app.set('views engine', 'ejs' );
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   await app.listen(3001);
 }

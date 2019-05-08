@@ -82,6 +82,8 @@ export class AppController {
         }
     }
 
+
+
     @Get('/semilla')
     semilla(
         @Request() request,
@@ -176,9 +178,30 @@ export class AppController {
     inicio(
         @Response() res
     ) {
-        return res.render('inicio');
+        return res.render(
+            'inicio',
+            {
+                estaVivo: true
+            });
     }
 
+    @Get('/peliculas')
+    peliculas(
+        @Response() res
+    ) {
+        return res.render(
+            'peliculas/inicio.ejs',
+            {
+
+            });
+    }
+    @Get('estilos')
+    estilos(
+        @Response() res
+    ){
+        return res.render('peliculas/estilos.ejs');
+
+    }
 
 
 }
@@ -388,3 +411,67 @@ const rFilter = arregloNumerosFilter
 // 1.1) sumen 10 a todos
 // 1.2) Filtren a los mayores a 15
 //  1.3) Si hay algun numero mayor a 30
+
+/*
+const arregloNumerosEvery = [1,2,3,4,5,6];
+arregloNumerosEvery
+    .every(
+        callbackfn:(valorActual)=>{
+            return valorActual > 0
+}
+    );
+console.log(respuestaEvery);
+const arregloNumerosSome = [1,2,3,4,5,6];
+arregloNumerosSome
+    .some( //si alguno cumple la condicion true
+        callbackfn:(valorActual)=>{
+            return valorActual<2
+});
+*/
+// 5) Todos los valores son positivos
+const arregloNumerosEvery = [1,2,3,4,5,6];
+const respuestaEvery = arregloNumerosEvery
+    .every(
+        (valorActual) => {
+            return valorActual > 0
+        }
+    );
+/*console.log(Respuesta Every: ${respuestaEvery});
+
+// 6) Algun valor es menor que 2 ?
+const arregloNumerosSome = [1,2,3,4,5,6];
+const respuestaSome = arregloNumerosSome
+    .some(
+        (valorActual) => {
+            return valorActual < 2
+        }
+    );
+console.log(Respuesta Some: ${respuestaSome});
+*/
+// 7) Sumar todos los valores
+const arregloNumerosReduce = [-1,2,3,4,5,6];
+const valorDondeEmpiezaCalculo = 0;
+const respuestaReduce = arregloNumerosReduce
+    .reduce(
+        (acumulado, valorActual) => {
+            return acumulado + valorActual;
+        },
+        valorDondeEmpiezaCalculo
+    );
+/*console.log(Respuesta Reduce: ${respuestaReduce});
+
+// 😎 Restar todos los valores de 100
+
+
+const arregloEjercicio = [1,2,3,4,5,6];
+
+arregloEjercicio
+    .map(callbackfn: (valorActual=>{ {
+        return valorActu
+}
+}))*/
+// 1.1) Sumar 10 a todos
+// 1.2) Filtrar a los mayores a 15
+// 1.3) Si exite algun numero mayor a 30
+// 8) Resten todos los valores de 100
+

@@ -30,26 +30,27 @@ export class AppController {
     }
     console.log('Headers: ', headers);
 
-    if(!cookieSegura.nombreUsuario) {
+    if(!cookieSegura.user) {
       response.cookie('user', 'jukishio');
     }
     const numIntentos = cookieSegura.intentos - resp;
+    if(cookieSegura.intentos){
+      response.cookie('Intentos Disponibles',numIntentos,{signed:true});
+    }
 
     if(numIntentos <=0){
       const respuesta = {
         resultado: `Resultado: ${resp}`,
-        user: `user: ${cookie.nombreUsuario}`,
+        user: `user: ${cookie.user}`,
         mensaje: "SE HAN HAGOTADO LOS TOKENS"
       };
       response.send(respuesta);
     }else{
       const respuesta = {
         resultado: resp,
-        user: `user: ${cookie.nombreUsuario}`,
+        user: `user: ${cookie.user}`,
       };
-      if(cookieSegura.intentos){
-        response.cookie('Intentos Disponibles',numIntentos,{signed:true});
-      }
+
       return response.send(respuesta);
     }
 
@@ -78,25 +79,19 @@ export class AppController {
 
     const numIntentos = cookieSegura.intentos - numResta;
 
-
-
-
-
     if(numIntentos <=0){
       const respuesta = {
         resultado: numResta,
-        user: `user:: ${cookie.nombreUsuario}`,
+        user: `user:: ${cookie.user}`,
         mensaje: "SE HAN HAGOTADO LOS TOKENS"
       };
       response.send(respuesta);
     }else{
       const respuesta = {
         resultado: numResta,
-        user: `user: ${cookie.nombreUsuario}`,
-      };
-      if(cookieSegura.intentos){
-        response.cookie('Intentos Disponibles',numIntentos,{signed:true});
-      }
+        user: `user: ${cookie.user}`,
+        mensaje: `tiene ${numIntentos} intentos`      };
+
       return response.send(respuesta);
     }
 
@@ -120,7 +115,7 @@ export class AppController {
     }
 
 
-    if(!cookieSegura.nombreUsuario) {
+    if(!cookieSegura.user) {
       response.cookie('user', 'jukishio');
     }
 
@@ -139,7 +134,7 @@ export class AppController {
     }else{
       const respuesta = {
         resultado: numMult,
-        user: `user: ${cookie.nombreUsuario}`,
+        user: `user: ${cookie.user}`,
       };
       if(cookieSegura.intentos){
         response.cookie('Intentos Disponibles',numIntentos,{signed:true});
@@ -170,7 +165,7 @@ export class AppController {
       }
 
 
-      if(!cookieSegura.nombreUsuario) {
+      if(!cookieSegura.user) {
         response.cookie('user', 'jukishio');
       }
 
@@ -179,14 +174,14 @@ export class AppController {
       if(numIntentos <=0){
         const respuesta = {
           resultado: numDiv,
-          user: `Usuario: ${cookie.nombreUsuario}`,
+          user: `user: ${cookie.user}`,
           mensaje: "SE HAN HAGOTADO LOS TOKENS"
         };
         response.send(respuesta);
       }else{
         const respuesta = {
           resultado: numDiv,
-          user: `user: ${cookie.nombreUsuario}`,
+          user: `user: ${cookie.user}`,
         };
         if(cookieSegura.intentos){
           response.cookie('Intentos Disponibles',numIntentos,{signed:true});
