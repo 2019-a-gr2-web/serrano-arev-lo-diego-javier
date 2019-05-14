@@ -7,36 +7,157 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Estilos</title>
 
-</head>
-<style>
-    /* css */
-    /* selector { p1:valor; pl:valor;}*/
-    h1 {
-        color: red;
-        background-color: yellow;
-    }
+    <link link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    p, h2, div {
-        color: green;
-        background-color: orange;
-    }
+    <style>
+        /* El codigo de aqui es .CSS*/
 
-    #adios {
-        color: pink;
-        background-color: purple;
-    }/* selector => Clase */
-        .verde {
-            color:brown;
-            background-color:blue;
+        /* selector { propiedad:valor; } , selector de etiqueta*/
+        h1 {
+            color: red;
+            background-color: yellow;
         }
 
-</style>
+        p, h2, div {
+            color: green;
+            background-color: orange;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* selector por id */
+        #adios {
+            color: pink;
+            background-color: purple;
+        }
+
+        /* selector por clase */
+        .verde {
+            color: brown;
+            background-color: blue;
+        }
+
+        p {
+            color: orange;
+            background-color: green;
+        }
+
+        .morado {
+            color: purple;
+        }
+        .azul {
+            color: deepskyblue;
+        }
+        .verde {
+            color: greenyellow;
+        }
+
+        p.verde {
+            color: orange;
+        }
+        p.verde.azul {
+            color: black;
+        }
+
+        .modelo-cajas {
+            border-color: brown;
+            border-style: solid;
+            border-width: 10px;
+            border-right-width: 0px;
+            padding: 10px
+        }
+
+        .separador {
+            margin-top: 200px;
+            margin-bottom: 200px;
+        }
+
+
+        table{
+            width: 100%;
+        }
+        tr {
+            border-bottom-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-color: brown;
+            border-bottom: brown solid 2px;
+        }
+
+
+    </style>
+</head>
+
 <body>
-    <h1>Hola</h1>
-    <h1 id="adios" >Adios</h1>
-    <h1 class="verde">Bienvenidos</h1>
-    <p>Barcelona</p>
-    <div>Liga</div>
-<h2>Emeleeec</h2>
+
+<div class="container">
+    <div class="row">
+        <!-- .col-sm-5*3 -->
+        <!-- .col-sm-5*3>h1 -->
+        <div class="col-sm-2">
+            <h1>LOGO</h1>
+        </div>
+        <div class="col-sm-7">
+            <h1>MENU</h1>
+        </div>
+        <div class="col-sm-3">
+            <h1>LOGIN</h1>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <h1>Genero de Peliculas</h1>
+
+            <table>
+                <tr>
+                    <td>i</td>
+                    <td>Accion</td>
+                    <td>824</td>
+                </tr>
+                <tr>
+                    <td>i</td>
+                    <td>Animacion</td>
+                    <td>356</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-9">
+            <h1>Peliculas online</h1>
+            <p>Pelisplus.co es un sitio ideal para ver películas y series online.
+                Nuestro sistema se preocupa por tener lo último del cine en calidad full HD.
+                Para ver una película o serie de televisión puedes usar el buscador en la parte superior o seguir
+                uno de los enlaces de genero o año de estreno en la parte izquierda del sitio, luego el enlace te
+                llevará al reproductor donde solo tienes que dar click en el boton de play. Te invitamos a
+                compartir este genial sitio con tus amigos y familiares.
+            </p>
+
+            <div class="row">
+                <div class="col-sm-6"><h1>Columna 1</h1></div>
+                <div class="col-sm-6"><h1>Columna 2</h1></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- OTRA CLASE -->
+<!-- SEPARADOR -> para dar espacios -->
+<div class="separador"></div>
+
+<h1>Hola</h1>
+<h1 id="adios" style="color: white;background-color: black">Adios</h1>
+<h1 class="verde">Bienvenidos</h1>
+
+<p>Barcelona</p>
+<div>Liga</div>
+<h2 class="modelo-cajas">Emelec</h2>
+
+<p class="morado azul">Lorem Ipsum</p>
+
+<div class="verde">Verde UNO</div>
+<p class="verde">Verde DOS</p>
+<p class="verde azul modelo-cajas" >Verde DOS</p>
+
 </body>
 </html>
