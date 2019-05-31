@@ -1,0 +1,55 @@
+<%- include('header',{nombreUsuario:nombreUsuario}) %>
+
+<div class="container">
+  <form action="/autor/inicio" method="GET">
+    <div class="form-group p-3">
+      <label for="busqueda">Busqueda</label>
+      <div class="input-group mb-3">
+        <input id="busqueda" type="text" class="form-control" name="busqueda" />
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-end">
+    <a href="/autor/crear" class="btn btn-outline-success mb-3">Crear Autor</a>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">No. Libros</th>
+        <th scope="col">Ecuatoriano</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% arreglo.forEach((autor)=>{ %>
+      <tr>
+        <td><%= autor.nombres %></td>
+        <td><%= autor.apellidos %></td>
+        <td><%= autor.fechaNacimiento %></td>
+        <td><%= autor.numeroLibros %></td>
+        <td><%= autor.ecuatoriano ? 'Si' : 'No'; %></td>
+        <td>
+          <form action="/autor/borrar/<%=autor.id%>" method="post">
+            <button type="submit" class="btn btn-outline-danger btn-block m-1">
+              Eliminar
+            </button>
+          </form>
+          <a
+            href="/libro/gestion/<%=autor.id%>"
+            class="btn btn-outline-info btn-block m-1"
+            >Gestionar Hijos</a
+          >
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

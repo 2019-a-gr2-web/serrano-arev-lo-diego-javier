@@ -1,0 +1,57 @@
+<%- include('header',{nombreUsuario:nombreUsuario}) %>
+
+<div class="container">
+  <form action="/libro/gestion/<%=autorId%>" method="GET">
+    <div class="form-group p-3">
+      <label for="busqueda">Busqueda</label>
+      <div class="input-group mb-3">
+        <input id="busqueda" type="text" class="form-control" name="busqueda" />
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-end">
+    <a href="/libro/crear/<%=autorId%>" class="btn btn-outline-success mb-3"
+      >Crear Libro</a
+    >
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ICBN</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">No. Paginas</th>
+        <th scope="col">Edicion</th>
+        <th scope="col">Fecha Publicacion</th>
+        <th scope="col">Editorial</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% arreglo.forEach((libro)=>{ %>
+      <tr>
+        <td><%= libro.ICBN %></td>
+        <td><%= libro.nombre %></td>
+        <td><%= libro.numeroPaginas %></td>
+        <td><%= libro.edicion %></td>
+        <td><%= libro.fechaPublicacion %></td>
+        <td><%= libro.nombreEditorial %></td>
+        <td>
+          <form
+            action="/libro/borrar/<%=libro.id%>?autorId=<%=autorId%>"
+            method="post"
+          >
+            <button type="submit" class="btn btn-outline-danger btn-block m-1">
+              Eliminar
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

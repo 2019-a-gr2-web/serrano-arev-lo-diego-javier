@@ -1,0 +1,41 @@
+<%- include('header',{nombreUsuario:nombreUsuario}) %>
+
+<div class="container mt-3 mb-5">
+  <h3>Crear Autor</h3>
+  <form action="/autor/crear" method="POST">
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <input type="text" class="form-control" id="nombres" name="nombres" />
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" name="apellidos" />
+    </div>
+    <div class="form-group">
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input
+        type="date"
+        class="form-control"
+        id="fechaNacimiento"
+        name="fechaNacimiento"
+      />
+    </div>
+    <div class="form-group">
+      <label for="numeroLibros">No. de Libros</label>
+      <input
+        type="number"
+        class="form-control"
+        id="numeroLibros"
+        name="numeroLibros"
+      />
+    </div>
+    <div class="form-group">
+      <label for="ecuatoriano">Ecuatoriano</label>
+      <select name="ecuatoriano" class="form-control" id="ecuatoriano">
+        <option value="true">Verdadero</option>
+        <option value="false">Falso</option>
+      </select>
+    </div>
+    <button class="btn btn-primary">Crear</button>
+  </form>
+</div>
