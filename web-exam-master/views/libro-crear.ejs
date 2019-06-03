@@ -1,0 +1,48 @@
+<%- include('header',{nombreUsuario:nombreUsuario}) %>
+
+<div class="container mt-3 mb-5">
+  <h3>Crear Libro</h3>
+  <form action="/libro/crear" method="POST">
+    <input type="hidden" id="autorId" name="autorId" value="<%=autorId%>" />
+    <div class="form-group">
+      <label for="ICBN">ICBN</label>
+      <input type="number" class="form-control" id="ICBN" name="ICBN" />
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" />
+    </div>
+    <div class="form-group">
+      <label for="numeroPaginas">No. de paginas</label>
+      <input
+        type="number"
+        class="form-control"
+        id="numeroPaginas"
+        name="numeroPaginas"
+      />
+    </div>
+    <div class="form-group">
+      <label for="edicion">Edicion</label>
+      <input type="number" class="form-control" id="edicion" name="edicion" />
+    </div>
+    <div class="form-group">
+      <label for="fechaPublicacion">Fecha Publicacion</label>
+      <input
+        type="date"
+        class="form-control"
+        id="fechaPublicacion"
+        name="fechaPublicacion"
+      />
+    </div>
+    <div class="form-group">
+      <label for="nombreEditorial">Editorial</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombreEditorial"
+        name="nombreEditorial"
+      />
+    </div>
+    <button class="btn btn-primary">Crear</button>
+  </form>
+</div>
